@@ -3,6 +3,7 @@ import type { ComponentProps } from "react";
 
 type TileProps = {
   color: string; // Hex color string
+  onClick: () => void;
 } & ComponentProps<"div">;
 const Tile = ({ color, className, ...props }: TileProps) => {
   return (
