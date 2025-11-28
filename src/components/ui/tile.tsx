@@ -17,7 +17,7 @@ const Tile = ({ color, className, ...props }: TileProps) => {
       }}
       {...props}
     >
-      <span>H</span>
+      {/* <span>{label}</span> */}
     </div>
   );
 };
