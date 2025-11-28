@@ -1,5 +1,6 @@
+import type { Game } from "@/types/game";
 import axios from "axios";
 
 export const getGameState = () => {
-  return axios.get("/api/gamestate");
+  return axios.get<Game>("/api/gamestate");
 };

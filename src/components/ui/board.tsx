@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import type { Tile } from "@/types/tile";
 import { type ComponentProps } from "react";
 import TilePiece from "./tile";
+import { useGameState } from "@/hooks/useGameState";
 
 type BoardProps = {
   width: number;
@@ -10,6 +11,9 @@ type BoardProps = {
   checkered?: boolean;
 } & ComponentProps<"div">;
 const Board = ({ tiles, width, height, className, ...props }: BoardProps) => {
+  const { data } = useGameState();
+  const state = data?.data;
+
   return (
     <div
       className={cn(
