@@ -1,21 +1,26 @@
+import { useSendMove } from "@/hooks/useSendMove";
 import { cn } from "@/lib/utils";
 import type { Tile } from "@/types/tile";
 import { type ComponentProps } from "react";
 import TilePiece from "./tile";
-import { useGameState } from "@/hooks/useGameState";
-import { useSendMove } from "@/hooks/useSendMove";
+import type { Game } from "@/types/game";
 
 type BoardProps = {
   width: number;
   height: number;
   tiles: Tile[];
+  state: Game;
   checkered?: boolean;
 } & ComponentProps<"div">;
-const Board = ({ tiles, width, height, className, ...props }: BoardProps) => {
-  const { data } = useGameState();
+const Board = ({
+  state,
+  tiles,
+  width,
+  height,
+  className,
+  ...props
+}: BoardProps) => {
   const { mutate } = useSendMove();
-
-  const state = data?.data;
 
   return (
     <div
@@ -33,10 +38,6 @@ const Board = ({ tiles, width, height, className, ...props }: BoardProps) => {
         <TilePiece
           onClick={() => {
             // Notify the backend
-            if (!state) {
-              alert("State is not defined!");
-              return;
-            }
 
             mutate({ tile, player: state?.currentPlayer.name });
           }}
