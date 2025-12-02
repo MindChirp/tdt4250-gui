@@ -25,7 +25,7 @@ const Board = ({
   return (
     <div
       className={cn(
-        "w-fit h-fit border border-border rounded-md grid overflow-hidden",
+        "w-fit h-fit border border-card rounded-md grid overflow-hidden bg-background shadow-sm",
         className
       )}
       style={{
