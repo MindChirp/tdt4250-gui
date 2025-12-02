@@ -60,7 +60,7 @@ function App() {
         />
         <Alert className="absolute bottom-10 left-1/2 -translate-x-1/2 w-fit shadow-sm max-w-xl">
           <InfoIcon />
-          <AlertTitle>Cannot connect?</AlertTitle>
+          <AlertTitle>Cannot open game?</AlertTitle>
           <AlertDescription>
             Ensure that the python backend is up and running, and that a game
             has been generated and put inside the server.
