@@ -45,8 +45,8 @@ function App() {
   if (!state.currentPlayer) {
     return (
       <div className="flex items-center justify-center h-screen w-full flex-col gap-5">
-        <h1 className="text-2xl flex flex-row items-center gap-2.5">
-          <AlertTriangle />
+        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance flex flex-row items-center gap-2.5">
+          <AlertTriangle size={40} strokeWidth={3} />
           No game defined
         </h1>
         <Button onClick={() => refetch()}>Refetch game</Button>
