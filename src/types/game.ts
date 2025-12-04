@@ -1,9 +1,26 @@
-export type Game = {
-  // Some properties of the game class
+export type Tile = {
+  row: number;
+  column: number;
   name: string;
-  currentPlayer: Player;
+  defaultHexColor: string;
+  currentState: string;
+  currentStateColor: string;
 };
 
-export type Player = {
-  name: string;
+export type Game = {
+  players: string[];
+  activePlayer: string;
+  boardWidth: number;
+  boardHeight: number;
+  tiles: Tile[];
+  legalMoves: Tile[];
+  gameName: string;
 };
+
+export type MoveRequest = {
+  column: number;
+  row: number;
+  player: string;
+};
+
+export type Player = string;

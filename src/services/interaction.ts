@@ -1,5 +1,5 @@
 import { api } from "@/lib/axios";
-import type { Tile } from "@/types/tile";
+import type { Tile } from "@/types/game";
 
 /// @ts-ignore
 export const sendMouseClick = ({
@@ -10,7 +10,9 @@ export const sendMouseClick = ({
   player: string;
 }) => {
   console.log("Sending mouse click to backend");
-  return api.post("/api/click", {
-    // TBD: Decide format of HTTP request
+  return api.post("/move", {
+    column: tile.column,
+    row: tile.row,
+    player: player,
   });
 };

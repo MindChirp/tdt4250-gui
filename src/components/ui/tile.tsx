@@ -3,16 +3,19 @@ import type { ComponentProps } from "react";
 
 type TileProps = {
   color: string; // Hex color string
+  tileScale: number;
   onClick: () => void;
 } & ComponentProps<"div">;
-const Tile = ({ color, className, ...props }: TileProps) => {
+const Tile = ({ color, tileScale, className, ...props }: TileProps) => {
   return (
     <div
       className={cn(
-        "p-2 aspect-square h-10 flex items-center justify-center",
+        "p-2 aspect-square flex items-center justify-center border border-border rounded-lg",
         className
       )}
       style={{
+        height: tileScale * 25,
+        width: tileScale * 25,
         backgroundColor: color,
       }}
       {...props}

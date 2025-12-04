@@ -1,48 +1,40 @@
 import { useSendMove } from "@/hooks/useSendMove";
 import { cn } from "@/lib/utils";
-import type { Tile } from "@/types/tile";
+import type { Game } from "@/types/game";
 import { type ComponentProps } from "react";
 import TilePiece from "./tile";
-import type { Game } from "@/types/game";
 
 type BoardProps = {
-  width: number;
-  height: number;
-  tiles: Tile[];
   state: Game;
-  checkered?: boolean;
 } & ComponentProps<"div">;
-const Board = ({
-  state,
-  tiles,
-  width,
-  height,
-  className,
-  ...props
-}: BoardProps) => {
+const Board = ({ state, className, ...props }: BoardProps) => {
   const { mutate } = useSendMove();
 
   return (
     <div
       className={cn(
-        "w-fit h-fit border border-card rounded-md grid overflow-hidden bg-background shadow-sm",
+        "w-fit h-fit border border-card rounded-lg grid overflow-hidden bg-background shadow-sm",
         className
       )}
       style={{
-        gridTemplateColumns: `repeat(${width}, 1fr )`,
-        gridTemplateRows: `repeat(${height}, 1fr )`,
+        gridTemplateColumns: `repeat(${state.boardWidth}, 1fr )`,
+        gridTemplateRows: `repeat(${state.boardHeight}, 1fr )`,
       }}
       {...props}
     >
-      {tiles.map((tile, index) => (
+      {state.tiles.map((tile, index) => (
         <TilePiece
+          tileScale={
+            state.boardHeight >= state.boardWidth
+              ? 15 / state.boardHeight
+              : 15 / state.boardHeight
+          }
           onClick={() => {
             // Notify the backend
-
-            mutate({ tile, player: state?.currentPlayer.name });
+            mutate({ tile, player: state.activePlayer });
           }}
-          color={tile.darker ? "#999999" : tile.color}
-          key={`${index} + ${tile.col} + ${tile.row}`}
+          color={tile.currentStateColor ?? tile.defaultHexColor}
+          key={`${index} + ${tile.column} + ${tile.row}`}
         />
       ))}
     </div>

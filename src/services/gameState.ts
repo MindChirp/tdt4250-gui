@@ -1,6 +1,6 @@
+import { api } from "@/lib/axios";
 import type { Game } from "@/types/game";
-import axios from "axios";
 
 export const getGameState = () => {
-  return axios.get<Game>("/api/gamestate");
+  return api.get<Game>("/game-state");
 };
