@@ -46,6 +46,11 @@ function App() {
   return (
     <div className="h-screen w-screen flex items-center justify-center flex-col gap-5">
       <div className="flex flex-col gap-5 items-center relative z-10">
+        {state?.wonMessage && (
+          <div className="absolute top-1/2 left-1/2 bg-card/50 backdrop-blur-2xl border-border border -translate-1/2 rounded-lg p-5 z-10 text-xl text-center font-semibold min-w-xl">
+            {state.wonMessage}
+          </div>
+        )}
         <Players
           players={state.players}
           gameName={state.gameName}

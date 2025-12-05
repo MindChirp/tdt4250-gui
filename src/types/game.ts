@@ -15,6 +15,7 @@ export type Game = {
   tiles: Tile[];
   legalMoves: Tile[];
   gameName: string;
+  wonMessage?: string;
 };
 
 export type MoveRequest = {
