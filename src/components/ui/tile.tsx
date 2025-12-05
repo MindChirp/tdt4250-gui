@@ -4,13 +4,20 @@ import type { ComponentProps } from "react";
 type TileProps = {
   color: string; // Hex color string
   tileScale: number;
+  isLegal?: boolean;
   onClick: () => void;
 } & ComponentProps<"div">;
-const Tile = ({ color, tileScale, className, ...props }: TileProps) => {
+const Tile = ({
+  color,
+  isLegal,
+  tileScale,
+  className,
+  ...props
+}: TileProps) => {
   return (
     <div
       className={cn(
-        "p-2 aspect-square flex items-center justify-center border border-border rounded-lg",
+        "relative p-2 aspect-square flex items-center justify-center border border-border rounded-lg",
         className
       )}
       style={{
@@ -20,6 +27,9 @@ const Tile = ({ color, tileScale, className, ...props }: TileProps) => {
       }}
       {...props}
     >
+      {isLegal && (
+        <div className="absolute top-1/2 left-1/2 -translate-1/2 bg-green-300 rounded-full size-1/2" />
+      )}
       {/* <span>{label}</span> */}
     </div>
   );

@@ -24,6 +24,11 @@ const Board = ({ state, className, ...props }: BoardProps) => {
     >
       {state.tiles.map((tile, index) => (
         <TilePiece
+          isLegal={
+            !!state.legalMoves.find(
+              (m) => m.column === tile.column && m.row === tile.row
+            )
+          }
           tileScale={
             state.boardHeight >= state.boardWidth
               ? 15 / state.boardHeight
